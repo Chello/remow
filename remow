@@ -1,0 +1,16 @@
+#!/usr/bin/python3
+import sys
+import Connect
+import ConfigLoader
+
+try:
+    cl = ConfigLoader.ConfigLoader()
+except Exception as e:
+    print("Some errors occurred during parsing the config file")
+    print(e)
+    sys.exit(-1)
+
+print(cl.connection_type())
+c = Connect.Connect()
+c.test()
+

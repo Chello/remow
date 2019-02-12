@@ -1,0 +1,6 @@
+A me serve:
+    pip serve sempre
+    pexpect, in particolare pxssh
+    configparser (pip3 install configparser)
+    stormssh (pip3 install stormssh), per aprire il file di configurazione di ssh
+    cerberus (pip3 install cerberus), per validare gli oggetti
