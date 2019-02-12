@@ -1,16 +1,20 @@
 [Connection]
 
-#Connection type could be:
-#   prompt: ask every time hostname, username, password
-#   config: load configuration file (specifying it on SSHConfigFile)
-#       and use one of these hosts (specifying it on ConfigFileHost)
-ConnectionType = config
+# Connection type could be:
+#    prompt: ask every time hostname, username, password
+#    config: load configuration file (specifying it on SSHConfigFile)
+#        and use one of these hosts (specifying it on ConfigFileHost)
+#    command: use a ssh command (specifying it on SSHCommand)
+ConnectionType = command
 
-#If choose config in ConnectionType, specify config file
+# If choose config in ConnectionType, specify config file
 SSHConfigFile = ~/.ssh/config
 
-#If choose config in ConnectionType, specify connecting host
+# If choose config in ConnectionType, specify connecting host
 ConfigFileHost = Nustrake
+
+# If choose command in ConnectionType, set the command
+#SSHCommand = ssh username@hostname:port -o IdentityFile="priv"
 
 [topsecret.server.com]
 Port = 50022

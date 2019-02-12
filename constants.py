@@ -6,7 +6,7 @@ CONFIG_FILE_SCHEMA_CONNECTION = {
         'type': 'string',
         'allow_unknown': False,
         'required': True,
-        'allowed': ['config', 'prompt']
+        'allowed': ['config', 'prompt', 'command']
     },
     'sshconfigfile': {
         'type': 'string',
@@ -15,5 +15,10 @@ CONFIG_FILE_SCHEMA_CONNECTION = {
     'configfilehost': {
         'type': 'string',
         'allow_unknown': False
+    },
+    'sshcommand': {
+        'type': 'string',
+        'allow_unknown': False
+
     }
 }
