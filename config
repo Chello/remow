@@ -5,13 +5,13 @@
 #    config: load configuration file (specifying it on SSHConfigFile)
 #        and use one of these hosts (specifying it on ConfigFileHost)
 #    command: use a ssh command (specifying it on SSHCommand)
-ConnectionType = command
+ConnectionType = config
 
 # If choose config in ConnectionType, specify config file
 SSHConfigFile = ~/.ssh/config
 
 # If choose config in ConnectionType, specify connecting host
-ConfigFileHost = Nustrake
+ConfigFileHost = Foxtrot
 
 # If choose command in ConnectionType, set the command
 #SSHCommand = ssh username@hostname:port -o IdentityFile="priv"

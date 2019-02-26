@@ -2,7 +2,9 @@
 import sys
 import Connect
 import ConfigLoader
+import View
 
+view = View.View()
 try:
     cl = ConfigLoader.ConfigLoader()
 except Exception as e:
@@ -10,7 +12,7 @@ except Exception as e:
     print(e)
     sys.exit(-1)
 
-print(cl.connection_type())
-c = Connect.Connect()
-c.test()
-
+print(cl.get_conf_connection_attribute("ConnectionType"))
+print(cl.ssh_config_file())
+c = Connect.Connect(cl.ssh_config_file(), view)
+print(c.getWindowsList())
