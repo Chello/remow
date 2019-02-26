@@ -12,19 +12,13 @@ class Connect:
     global ssh
 
     def __init__(self, connectionOptions, view):
+        """Constructor
+        Requests for connectionOptions object with connection details
+        It connects to the host specified and keeps the connection opened
+        """
         self.view = view
         try:                                                            
             self.ssh = pxssh.pxssh(options = connectionOptions)
-            #     "HostName": "192.168.0.100",
-            #     "Port": "1296",
-            #     "IdentityFile": "/home/chello/.ssh/chelloATNustrake",
-            #     "User": "chello",
-            #     "ForwardX11": "yes"
-            # })
-            #hostname = input('hostname: ')
-            #username = input('username: ')
-            #password = getpass.getpass('password: ')
-            #s.login("192.168.0.100", "chello")
             self.ssh.login(connectionOptions['hostname'], connectionOptions['user'])
             #self.ssh.sendline ('uptime')  # run a command
             #self.ssh.prompt()             # match the prompt
@@ -36,18 +30,17 @@ class Connect:
             print("pxssh failed on login.")
     
     def __del__(self):
+        """Simply logouts the connection"""
         self.ssh.logout()
 
     def getWindowsList(self):
+        """Returns the list of opened windows in the connected host"""
         regexp = re.compile(constants.REGEX_LIST_APP_COMMAND)
+        #Send the command to host
         self.ssh.sendline (constants.LIST_APP_COMMAND)  # run a command
         self.ssh.prompt()             # match the prompt
+        #Trigger the response string
         terminalResponse = self.ssh.before.decode("utf-8").replace("\r\n", "\n")
-
+        #Return matches
         return regexp.findall(terminalResponse)
-        # for (appId, appName) in re.findall(regexp, terminalResponse):
-        #     print(appId, appName)
-        # for row in rows:
-        #     if row != constants.LIST_APP_COMMAND and len(row) != 0:
-        #         m = re.match("(0x[0-9a-f]*)[ ]*[0-9\-]*[\s\t]*[^ ]*[ ]*(.*)", row)
-        #         print(m.group(1), " ", m.group(2))
+        
