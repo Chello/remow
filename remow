@@ -15,4 +15,4 @@ except Exception as e:
 print(cl.get_conf_connection_attribute("ConnectionType"))
 print(cl.ssh_config_file())
 c = Connect.Connect(cl.ssh_config_file(), view)
-print(c.getWindowsList())
+print(view.promptAppRequest(c.getWindowsList()))

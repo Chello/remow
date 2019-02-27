@@ -37,10 +37,16 @@ class Connect:
         """Returns the list of opened windows in the connected host"""
         regexp = re.compile(constants.REGEX_LIST_APP_COMMAND)
         #Send the command to host
-        self.ssh.sendline (constants.LIST_APP_COMMAND)  # run a command
-        self.ssh.prompt()             # match the prompt
+        self.ssh.sendline(constants.LIST_APP_COMMAND)
+        self.ssh.prompt()
         #Trigger the response string
-        terminalResponse = self.ssh.before.decode("utf-8").replace("\r\n", "\n")
-        #Return matches
-        return regexp.findall(terminalResponse)
+        terminalResponse = self.ssh.before.decode("utf-8")
+        #Decode matches in array 
+        matches = regexp.findall(terminalResponse)
+        #Transform it in a list of dicts
+        toReturn = []
+        for match in matches:
+            toReturn.append({'id': match[0], 'name': match[1]})
+        #Return matches as dict
+        return toReturn
         
