@@ -1,7 +1,6 @@
 from pexpect import pxssh
 from storm.parsers.ssh_config_parser import ConfigParser as StormParser
 import constants
-import re
 
 
 class Connect:
@@ -26,30 +25,22 @@ class Connect:
             #print(type(str(self.ssh.before)))
             #print(toPrint, "\n\n")
 
-        except pxssh.ExceptionPxssh:
-            print("pxssh failed on login.")
+            #create temp dir for logs
+            self.ssh.sendline(constants.NEWDIR_TMP_LOG)
+            self.ssh.prompt()
+
+        except pxssh.ExceptionPxssh as err:
+            raise err
     
     def __del__(self):
         """Simply logouts the connection"""
         self.ssh.logout()
         print("Connection closed")
 
-    def getWindowsList(self):
-        """Returns the list of opened windows in the connected host"""
-        regexp = re.compile(constants.REGEX_LIST_APP_COMMAND)
+    def performCommand(self, command):
+        """Performs a specified command to the connected host and returns the terminal response"""
         #Send the command to host
         self.ssh.sendline(constants.LIST_APP_COMMAND)
         self.ssh.prompt()
-        #Trigger the response string
-        terminalResponse = self.ssh.before.decode("utf-8")
-        #Decode matches in array 
-        matches = regexp.findall(terminalResponse)
-        #Transform it in a list of dicts
-        toReturn = []
-        for match in matches:
-            toReturn.append({'id': match[0], 'name': match[1]})
-        #Return matches as dict
-        return toReturn
-    
-    def openVNCServer(self, appId):
-        pass
+        #Trigger the response string and return it
+        return self.ssh.before.decode("utf-8")

@@ -27,9 +27,9 @@ class View:
 
         i = 1
         print("Choose one of these app:")
-        print("0 ) \tQuit")
+        print("0 ) \t Quit")
         for app in appList:
-            print(i, ") \t", app['name'])
+            print(i, ")\t ", app['name'])
             i += 1
         return self.recieveValidAppElement(appList)
     
@@ -43,13 +43,13 @@ class View:
 
     def recieveValidAppElement(self, appList):
         try:
-            typed = self.recieveInt("Choose an app: ") -1
-            if typed == -1: #if typed 0 
+            typed = self.recieveInt("Choose an app: ")
+            if typed == 0: #if typed 0 
                 return None #ask to close 
-            elif typed < -1: #if typed something less than 0
+            if typed < 0: #if typed something less than 0
                 raise ValueError #wrong value
-            else: #if correct value
-                return appList[self.recieveInt("Choose an app: ") -1]
+            #if correct value
+            return appList[typed -1]
         except (IndexError, ValueError):
             self.send("Please type a correct value.")
             return self.recieveValidAppElement(appList)

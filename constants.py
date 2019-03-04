@@ -27,3 +27,8 @@ CONFIG_FILE_SCHEMA_CONNECTION = {
 LIST_APP_COMMAND = 'wmctrl -l'
 # The regex used for recognize the id and the name of the apps in the command response of the LIST_APP_COMMAND command
 REGEX_LIST_APP_COMMAND = "(0x[0-9a-f]*)[ ]*[0-9\-]*[\s\t]*[^ ]*[ ]*(.*)"
+# The command for create tmp log files
+NEWDIR_TMP_LOG = "mkdir -p /tmp/remow"
+# A function wich returns the command for create a new server
+def NEW_SERVER_ISTANCE(self, appId, serverPort, auth):
+    return "x11vnc -id " + appId + " -autoport " + serverPort + " -auth " + auth

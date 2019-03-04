@@ -3,6 +3,7 @@ import sys
 import Connect
 import ConfigLoader
 import View
+import WindowManager
 
 view = View.View()
 try:
@@ -12,10 +13,17 @@ except Exception as e:
     print(e)
     sys.exit(-1)
 
-c = Connect.Connect(cl.ssh_config_file(), view)
+try:
+    c = Connect.Connect(cl.ssh_config_file(), view)
+except pxssh.ExceptionPxssh:
+    view.send("pxssh error while connecting to server")
+    view.send(err)
+    sys.exit(-2)
+
+wm = WindowManager.WindowManager(c)
 
 while True:
-    request = view.promptAppRequest(c.getWindowsList())
+    request = view.promptAppRequest(wm.getWindowsList())
     if request == None: #If user asked to close
         sys.exit(0)
 

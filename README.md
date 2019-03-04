@@ -3,10 +3,12 @@ Choose dinamically what window to VNC directly from the remote host.
 
 
 ## The remote server needs:
-    *screen* (```apt install screen```)
+
+    *ssh* (```apt install ssh```)
     *x11vnc* (```apt install x11vnc*```)
 
 ## The client needs:
+
     *pip* (apt install python3-pip)
     *remmina* (```apt install remmina```)
 
