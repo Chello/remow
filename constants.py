@@ -29,6 +29,6 @@ LIST_APP_COMMAND = 'wmctrl -l'
 REGEX_LIST_APP_COMMAND = "(0x[0-9a-f]*)[ ]*[0-9\-]*[\s\t]*[^ ]*[ ]*(.*)"
 # The command for create tmp log files
 NEWDIR_TMP_LOG = "mkdir -p /tmp/remow"
-# A function wich returns the command for create a new server
+# Dummy function wich returns the command for create a new server
 def NEW_SERVER_ISTANCE(self, appId, serverPort, auth):
     return "x11vnc -id " + appId + " -autoport " + serverPort + " -auth " + auth

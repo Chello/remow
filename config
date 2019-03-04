@@ -1,10 +1,10 @@
 [Connection]
 
 # Connection type could be:
-#    prompt: ask every time hostname, username, password
-#    config: load configuration file (specifying it on SSHConfigFile)
-#        and use one of these hosts (specifying it on ConfigFileHost)
-#    command: use a ssh command (specifying it on SSHCommand)
+#    prompt:    ask every time hostname, username, password
+#    config:    load configuration file (specifying it on SSHConfigFile)
+#               and use one of these hosts (specifying it on ConfigFileHost)
+#    command:   use a ssh command (specifying it on SSHCommand)
 ConnectionType = config
 
 # If choose config in ConnectionType, specify config file
@@ -15,6 +15,14 @@ ConfigFileHost = Foxtrot
 
 # If choose command in ConnectionType, set the command
 #SSHCommand = ssh username@hostname:port -o IdentityFile="priv"
+
+[VNCServer]
+
+# Specifies the starting port to be used by VNC servers
+StartingPort = 5900
+
+# Specifies if have to use security options 
+SecureServer = yes
 
 [topsecret.server.com]
 Port = 50022

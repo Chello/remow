@@ -6,6 +6,7 @@ import View
 import WindowManager
 
 view = View.View()
+
 try:
     cl = ConfigLoader.ConfigLoader()
 except Exception as e:
@@ -15,12 +16,12 @@ except Exception as e:
 
 try:
     c = Connect.Connect(cl.ssh_config_file(), view)
-except pxssh.ExceptionPxssh:
+except pxssh.ExceptionPxssh as err:
     view.send("pxssh error while connecting to server")
     view.send(err)
     sys.exit(-2)
 
-wm = WindowManager.WindowManager(c)
+wm = WindowManager.WindowManager(c, cl)
 
 while True:
     request = view.promptAppRequest(wm.getWindowsList())
