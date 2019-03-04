@@ -44,11 +44,12 @@ class View:
     def recieveValidAppElement(self, appList):
         try:
             typed = self.recieveInt("Choose an app: ") -1
-            if typed == -1:
-                return None
-            elif typed < -1:
-                raise ValueError
-            return appList[self.recieveInt("Choose an app: ") -1]
+            if typed == -1: #if typed 0 
+                return None #ask to close 
+            elif typed < -1: #if typed something less than 0
+                raise ValueError #wrong value
+            else: #if correct value
+                return appList[self.recieveInt("Choose an app: ") -1]
         except (IndexError, ValueError):
             self.send("Please type a correct value.")
             return self.recieveValidAppElement(appList)
