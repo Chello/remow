@@ -32,6 +32,7 @@ class Connect:
     def __del__(self):
         """Simply logouts the connection"""
         self.ssh.logout()
+        print("Connection closed")
 
     def getWindowsList(self):
         """Returns the list of opened windows in the connected host"""
@@ -49,4 +50,6 @@ class Connect:
             toReturn.append({'id': match[0], 'name': match[1]})
         #Return matches as dict
         return toReturn
-        
+    
+    def openVNCServer(self, appId):
+        pass

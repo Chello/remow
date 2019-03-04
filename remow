@@ -12,7 +12,12 @@ except Exception as e:
     print(e)
     sys.exit(-1)
 
-print(cl.get_conf_connection_attribute("ConnectionType"))
-print(cl.ssh_config_file())
 c = Connect.Connect(cl.ssh_config_file(), view)
-print(view.promptAppRequest(c.getWindowsList()))
+
+while True:
+    request = view.promptAppRequest(c.getWindowsList())
+    if request == None: #If user asked to close
+        sys.exit(0)
+
+    view.send("Ask to open " + request['name'])
+

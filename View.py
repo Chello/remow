@@ -25,8 +25,9 @@ class View:
         Returns the dict of the app chosen
         """
 
-        print("Choose one of these app:")
         i = 1
+        print("Choose one of these app:")
+        print("0 ) \tQuit")
         for app in appList:
             print(i, ") \t", app['name'])
             i += 1
@@ -42,7 +43,12 @@ class View:
 
     def recieveValidAppElement(self, appList):
         try:
+            typed = self.recieveInt("Choose an app: ") -1
+            if typed == -1:
+                return None
+            elif typed < -1:
+                raise ValueError
             return appList[self.recieveInt("Choose an app: ") -1]
-        except IndexError:
+        except (IndexError, ValueError):
             self.send("Please type a correct value.")
             return self.recieveValidAppElement(appList)
