@@ -29,7 +29,8 @@ CONFIG_FILE_SCHEMA_VNC_SERVER = {
         'type': 'integer',
         'allow_unknown': False,
         'required': True,
-        'min': 1025
+        'min': 1025,
+        'max': 65535
     },
     'secureserver': {
         'type': 'boolean',
