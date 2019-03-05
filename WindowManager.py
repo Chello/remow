@@ -1,17 +1,39 @@
 import constants
 import re
 import Connect
+import ConfigLoader
 
 class WindowManager:
     global connection
-    global configuration
+    global config
+    #the starting port
+    global startingPort
+    """the list of available/used ports
+    Is a list of booleans and its meaning is that
+        if usedPorts[0] then startingPort is used
+        if not usedPOrt[1] then (startingPort + 1) is free
+        and so on
+    """
+    global usedPorts
+    #the max number of windows
+    global maxWindows
 
-    def __init__(self, connection, configuration):
+    def __init__(self, connection, config):
         self.connection = connection
-        self.configuration = configuration
+        self.config = config
+        # Save the first port to use
+        self.startingPort = config.get_conf_section_attribute(constants.CONFIG_FILE_VNC_SERVER_SECTION, "startingport")
+        self.maxWindows = config.get_conf_section_attribute(constants.CONFIG_FILE_VNC_SERVER_SECTION, "maxwindows")
+        self.usedPorts = [False] * self.maxWindows
 
     def openVNCServer(self, appId):
-        pass
+        """Creates a new VNC Server of the specified server appId"""
+        # Find the first free port
+        freePorts = [i for i, x in enumerate(self.usedPorts) if x]
+        if len(freePorts) == 0: #if no ports are available
+            raise Exception
+        
+        #now I have to manage multiwindows. need Connect to implement screen.
         
     
     def getWindowsList(self):

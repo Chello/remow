@@ -36,6 +36,12 @@ CONFIG_FILE_SCHEMA_VNC_SERVER = {
         'type': 'boolean',
         'allow_unknown': False,
         'required': True
+    },
+    'maxwindows': {
+        'type': 'integer',
+        'allow_unknown': False,
+        'required': True,
+        'min': 1
     }
 }
 

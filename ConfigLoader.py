@@ -55,7 +55,6 @@ class ConfigLoader:
             ):
             c = read_ssh_config(expanduser("~/.ssh/config"))
 
-            # assuming you have a host "svu"
             return c.host(self.config_handler[constants.CONFIG_FILE_CONNECTION_SECTION]["ConfigFileHost"])  # print the settings
         else:
             return None
