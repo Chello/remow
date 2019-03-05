@@ -22,6 +22,21 @@ CONFIG_FILE_SCHEMA_CONNECTION = {
 
     }
 }
+# Name of the VNC Server section
+CONFIG_FILE_VNC_SERVER_SECTION = "VNCServer"
+CONFIG_FILE_SCHEMA_VNC_SERVER = {
+    'startingport': {
+        'type': 'integer',
+        'allow_unknown': False,
+        'required': True,
+        'min': 1025
+    },
+    'secureserver': {
+        'type': 'boolean',
+        'allow_unknown': False,
+        'required': True
+    }
+}
 
 # The command for opening windows info and id
 LIST_APP_COMMAND = 'wmctrl -l'

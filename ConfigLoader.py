@@ -35,15 +35,18 @@ class ConfigLoader:
             raise Exception(config_validator.errors)
 
     def get_conf_connection_attribute(self, attribute):
+        """Return the value specified in the attribute for the connection section"""
         if attribute in self.config_handler[constants.CONFIG_FILE_CONNECTION_SECTION]:
             return self.config_handler[constants.CONFIG_FILE_CONNECTION_SECTION][attribute]
         else:
             return None
 
     def connection_type(self):
+        """Returns the connection type in ConfigFile"""
         return self.config_handler[constants.CONFIG_FILE_CONNECTION_SECTION]["ConnectionType"]
     
     def ssh_config_file(self):
+        """Returns the configuration for connecting to the ssh server"""
         if (
             "ConnectionType" in self.config_handler[constants.CONFIG_FILE_CONNECTION_SECTION]
             and "config" == self.config_handler[constants.CONFIG_FILE_CONNECTION_SECTION]["ConnectionType"]
@@ -56,6 +59,21 @@ class ConfigLoader:
             return c.host(self.config_handler[constants.CONFIG_FILE_CONNECTION_SECTION]["ConfigFileHost"])  # print the settings
         else:
             return None
-    
-    def config_file_host(self):
-        return self.config_handler[constants.CONFIG_FILE_CONNECTION_SECTION]["ConfigFileHost"]
+
+    def get_conf_vncserver_attribute(self, attribute):
+        """Return the value specified in the attribute for the VNCServer """
+        if attribute in self.config_handler[constants.CONFIG_FILE_VNC_SERVER_SECTION]:
+            return self.config_handler[constants.CONFIG_FILE_VNC_SERVER_SECTION][attribute]
+        else:
+            return None
+
+    def get_conf_section_attribute(self, section, attribute):
+        """ Returns the given attribute of a given section.
+            Returns an Exception if the specified section or attribute does not exists."""
+        if (
+            section in self.config_handler and
+            attribute in self.config_handler[section]
+            ):
+            return self.config_handler[section][attribute]
+        else:
+            raise Exception

@@ -4,12 +4,15 @@ import Connect
 
 class WindowManager:
     global connection
+    global configuration
 
-    def __init__(self, connection):
+    def __init__(self, connection, configuration):
         self.connection = connection
+        self.configuration = configuration
 
     def openVNCServer(self, appId):
         pass
+        
     
     def getWindowsList(self):
         """Returns the list of opened windows in the connected host"""
