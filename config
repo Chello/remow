@@ -28,6 +28,12 @@ SecureServer = yes
 # The max number of remote windows is 9
 MaxWindows = 9
 
+# Specifies the height of the windows to be spawned
+WindowsHeight = 768
+
+# Specifies the width of the windows to be spawned
+WindowsWidth = 1024
+
 [topsecret.server.com]
 Port = 50022
 ForwardX11 = no

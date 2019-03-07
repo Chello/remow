@@ -37,9 +37,14 @@ class WindowManager:
         # freePorts = [i for i, x in enumerate(self.usedPorts) if x]
         # if len(freePorts) == 0: #if no ports are available
         #     raise Exception
-        com=constants.NEW_SERVER_ISTANCE(appId, self.startingPort)
-        print(com)
-        print(self.connection.performCommand(com))
+        
+        self.connection.performCommand(constants.DE_MAXIMIZE_WINDOW(appId))
+
+        width = self.config.get_conf_section_attribute(constants.CONFIG_FILE_VNC_SERVER_SECTION, "windowswidth")
+        height = self.config.get_conf_section_attribute(constants.CONFIG_FILE_VNC_SERVER_SECTION, "windowsheight")
+        self.connection.performCommand(constants.SET_WINDOW_SIZE(appId, width, height))
+        
+        self.connection.performCommand(constants.NEW_SERVER_ISTANCE(appId, self.startingPort))
         
         return self.startingPort
         #now I have to manage multiwindows. need Connect to implement screen.

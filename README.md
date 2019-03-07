@@ -8,6 +8,7 @@ Choose dinamically what window to VNC directly from the remote host.
     *x11vnc* (```apt install x11vnc*```)
     *screen*
     *wmctrl* (```apt install wmctrl```)
+    *xdotool* (```apt install xdotool```)
     
     For installing all packages need to run:
     ```apt install openssh-server x11vnc* wmctrl```

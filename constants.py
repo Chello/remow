@@ -58,3 +58,9 @@ def NEW_SERVER_ISTANCE(appId, serverPort):
 # Dummy function wich returns the command for open the VNC client 
 def NEW_CLIENT_ISTANCE(ip, port):
     return "vncviewer " + ip + "::" + port
+
+def DE_MAXIMIZE_WINDOW(appId):
+    return "wmctrl -ir " + appId + " -b remove,maximized_vert,maximized_horz"
+
+def SET_WINDOW_SIZE(appid, height, width):
+    return "xdotool windowsize " + appid + " " + height + " " + width
