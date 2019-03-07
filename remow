@@ -4,6 +4,7 @@ import Connect
 import ConfigLoader
 import View
 import WindowManager
+import time
 
 view = View.View()
 
@@ -29,4 +30,7 @@ while True:
         sys.exit(0)
 
     view.send("Ask to open " + request['name'])
+    port = wm.openVNCServer(request['id'])
+    time.sleep(3)
+    wm.openVNCClient(port)
 

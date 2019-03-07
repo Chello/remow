@@ -2,10 +2,12 @@ import constants
 import re
 import Connect
 import ConfigLoader
+import os
 
 class WindowManager:
     global connection
     global config
+    global ip
     #the starting port
     global startingPort
     """the list of available/used ports
@@ -21,20 +23,32 @@ class WindowManager:
     def __init__(self, connection, config):
         self.connection = connection
         self.config = config
+        # save the IP
+        self.ip = connection.ip
         # Save the first port to use
         self.startingPort = config.get_conf_section_attribute(constants.CONFIG_FILE_VNC_SERVER_SECTION, "startingport")
         self.maxWindows = int(config.get_conf_section_attribute(constants.CONFIG_FILE_VNC_SERVER_SECTION, "maxwindows"))
         self.usedPorts = [False] * self.maxWindows
 
     def openVNCServer(self, appId):
-        """Creates a new VNC Server of the specified server appId"""
+        """Creates a new VNC Server of the specified server appId.
+        Returns the port in which responds the VN Server"""
         # Find the first free port
-        freePorts = [i for i, x in enumerate(self.usedPorts) if x]
-        if len(freePorts) == 0: #if no ports are available
-            raise Exception
+        # freePorts = [i for i, x in enumerate(self.usedPorts) if x]
+        # if len(freePorts) == 0: #if no ports are available
+        #     raise Exception
+        com=constants.NEW_SERVER_ISTANCE(appId, self.startingPort)
+        print(com)
+        print(self.connection.performCommand(com))
         
+        return self.startingPort
         #now I have to manage multiwindows. need Connect to implement screen.
-        
+    
+    def openVNCClient(self, port):
+        com = constants.NEW_CLIENT_ISTANCE(self.ip, port)
+        print(com)
+        os.system(com)
+
     
     def getWindowsList(self):
         """Returns the list of opened windows in the connected host"""

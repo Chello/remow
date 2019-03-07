@@ -15,7 +15,7 @@ Choose dinamically what window to VNC directly from the remote host.
 ## The client needs:
 
     *pip* (apt install python3-pip)
-    *remmina* (```apt install remmina```)
+    *vncviewer* (```apt install remmina```)
 
     ### Also needs following pip packages:
         *pexpect*, in particular *pxssh* (```pip3 install pexpect```)
