@@ -42,13 +42,14 @@ class Connect:
     #def performCommand(self, command, usescreen = True, terminal = 0):
     def performCommand(self, command):
         """Performs a specified command to the connected host and returns the terminal response"""
+        self.ssh.prompt(1)
         #Send the command to host
         # if usescreen:
         #     self.ssh.sendcontrol('a')
         #     self.ssh.send(str(terminal))
         #     #self.ssh.prompt()
         self.ssh.sendline(command)
-        self.ssh.prompt()
+        self.ssh.prompt(1)
         #Trigger the response string and return it
         #self.ssh.expect(pxssh.EOF)
         return self.ssh.before.decode("utf-8")
