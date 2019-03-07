@@ -1,0 +1,59 @@
+Traceback (most recent call last):
+  File "/home/chello/.local/lib/python3.6/site-packages/pexpect/expect.py", line 111, in expect_loop
+    incoming = spawn.read_nonblocking(spawn.maxread, timeout)
+  File "/home/chello/.local/lib/python3.6/site-packages/pexpect/pty_spawn.py", line 482, in read_nonblocking
+    raise TIMEOUT('Timeout exceeded.')
+pexpect.exceptions.TIMEOUT: Timeout exceeded.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "./remow", line 18, in <module>
+    c = Connect.Connect(cl.ssh_config_file(), view)
+  File "/home/chello/Projects/remow/Connect.py", line 29, in __init__
+    self.performCommand(constants.NEWDIR_TMP_LOG, usescreen = False)
+  File "/home/chello/Projects/remow/Connect.py", line 52, in performCommand
+    self.ssh.expect(pxssh.EOF)
+  File "/home/chello/.local/lib/python3.6/site-packages/pexpect/spawnbase.py", line 341, in expect
+    timeout, searchwindowsize, async_)
+  File "/home/chello/.local/lib/python3.6/site-packages/pexpect/spawnbase.py", line 369, in expect_list
+    return exp.expect_loop(timeout)
+  File "/home/chello/.local/lib/python3.6/site-packages/pexpect/expect.py", line 119, in expect_loop
+    return self.timeout(e)
+  File "/home/chello/.local/lib/python3.6/site-packages/pexpect/expect.py", line 82, in timeout
+    raise TIMEOUT(msg)
+pexpect.exceptions.TIMEOUT: Timeout exceeded.
+<pexpect.pxssh.pxssh object at 0x7fba9ca90128>
+command: /usr/bin/ssh
+args: ['/usr/bin/ssh', '-o', 'hostname=localhost', '-o', 'user=chello', '-o', 'identityfile=~/.ssh/chelloATNustrake_secondary', '-o', 'port=1296', '-q', '-l', 'chello', 'localhost']
+buffer (last 100 chars): b''
+
+after: <class 'pexpect.exceptions.TIMEOUT'>
+match: None
+match_index: None
+exitstatus: None
+flag_eof: False
+pid: 24266
+child_fd: 6
+closed: False
+timeout: 30
+delimiter: <class 'pexpect.exceptions.EOF'>
+logfile: None
+logfile_read: None
+logfile_send: None
+maxread: 2000
+ignorecase: False
+searchwindowsize: None
+delaybeforesend: 0.05
+delayafterclose: 0.1
+delayafterterminate: 0.1
+searcher: searcher_re:
+    0: EOF
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "./remow", line 19, in <module>
+    except pxssh.ExceptionPxssh as err:
+NameError: name 'pxssh' is not defined
+Connection closed

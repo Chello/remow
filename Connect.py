@@ -26,8 +26,12 @@ class Connect:
             #print(toPrint, "\n\n")
 
             #create temp dir for logs
-            self.ssh.sendline(constants.NEWDIR_TMP_LOG)
-            self.ssh.prompt()
+            self.performCommand(constants.NEWDIR_TMP_LOG, usescreen = False)
+            #start screen on remote
+            self.ssh.setwinsize(190, 90)
+            self.performCommand("screen", usescreen = False)
+            self.ssh.sendline()
+
 
         except pxssh.ExceptionPxssh as err:
             raise err
@@ -37,10 +41,14 @@ class Connect:
         self.ssh.logout()
         print("Connection closed")
 
-    def performCommand(self, command):
+    def performCommand(self, command, usescreen = True, terminal = 0):
         """Performs a specified command to the connected host and returns the terminal response"""
         #Send the command to host
+        if usescreen:
+            self.ssh.sendcontrol('a')
+            self.ssh.sendline(str(terminal))
         self.ssh.sendline(constants.LIST_APP_COMMAND)
         self.ssh.prompt()
         #Trigger the response string and return it
+        #self.ssh.expect(pxssh.EOF)
         return self.ssh.before.decode("utf-8")

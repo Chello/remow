@@ -23,7 +23,7 @@ class WindowManager:
         self.config = config
         # Save the first port to use
         self.startingPort = config.get_conf_section_attribute(constants.CONFIG_FILE_VNC_SERVER_SECTION, "startingport")
-        self.maxWindows = config.get_conf_section_attribute(constants.CONFIG_FILE_VNC_SERVER_SECTION, "maxwindows")
+        self.maxWindows = int(config.get_conf_section_attribute(constants.CONFIG_FILE_VNC_SERVER_SECTION, "maxwindows"))
         self.usedPorts = [False] * self.maxWindows
 
     def openVNCServer(self, appId):
@@ -41,6 +41,7 @@ class WindowManager:
         regexp = re.compile(constants.REGEX_LIST_APP_COMMAND)
         #Send the command
         terminalResponse = self.connection.performCommand(constants.LIST_APP_COMMAND)
+        print(terminalResponse)
         #Decode matches in array 
         matches = regexp.findall(terminalResponse)
         #Transform it in a list of dicts

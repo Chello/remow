@@ -25,8 +25,8 @@ StartingPort = 5900
 SecureServer = yes
 
 # Specifies the max remote window number
-# The max number of remote windows is 10
-MaxWindows = 10
+# The max number of remote windows is 9
+MaxWindows = 9
 
 [topsecret.server.com]
 Port = 50022
